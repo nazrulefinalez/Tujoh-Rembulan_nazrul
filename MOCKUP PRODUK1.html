@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECHO | Wireless Freedom</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #0a0e27;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Mask Reveal Effect */
+        .mask-reveal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0e27;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            clip-path: circle(150% at 50% 50%);
+            animation: maskReveal 2s ease-in-out forwards;
+        }
+
+        @keyframes maskReveal {
+            to {
+                clip-path: circle(0% at 50% 50%);
+            }
+        }
+
+        .mask-reveal-logo {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #ff6b35;
+            animation: logoFade 1.5s ease-in-out;
+        }
+
+        @keyframes logoFade {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        /* 3D Background Canvas */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-3d {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff6b35;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ff6b35;
+        }
+
+        /* Animated Icons in Nav */
+        .icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            animation: iconPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ff6b35, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleSlide 1s ease-out;
+        }
+
+        @keyframes titleSlide {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: #6dd5ed;
+            margin-bottom: 40px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Animated Banner */
+        .animated-banner {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(90deg, #1a1f4e, #ff6b35, #1a1f4e);
+            background-size: 200% 100%;
+            animation: bannerFlow 5s linear infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 40px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @keyframes bannerFlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        .banner-text {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            animation: bannerTextSlide 3s ease-in-out infinite;
+        }
+
+        @keyframes bannerTextSlide {
+            0%, 100% { transform: translateX(-100px); opacity: 0; }
+            50% { transform: translateX(0); opacity: 1; }
+        }
+
+        .cta-button {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            color: #fff;
+            background: #ff6b35;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 30px;
+            animation: buttonGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes buttonGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 53, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(255, 107, 53, 1); }
+        }
+
+        .cta-button:hover {
+            background: #fff;
+            color: #ff6b35;
+            transform: scale(1.1);
+        }
+
+        /* Product Section */
+        .product-section {
+            min-height: 100vh;
+            padding: 100px 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #product-canvas {
+            width: 100%;
+            height: 600px;
+        }
+
+        /* Features */
+        .features {
+            padding: 100px 50px;
+            background: rgba(26, 31, 78, 0.5);
+        }
+
+        .features h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #ff6b35;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: rgba(10, 14, 39, 0.8);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: #ff6b35;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: iconRotate 4s linear infinite;
+        }
+
+        @keyframes iconRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #6dd5ed;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            header { padding: 20px; }
+            nav { gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mask Reveal -->
+    <div class="mask-reveal">
+        <div class="mask-reveal-logo">ECHO</div>
+    </div>
+
+    <!-- 3D Background -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Header -->
+    <header>
+        <div class="logo-3d">ECHO</div>
+        <nav>
+            <a href="#"><span class="icon">🎧</span>Home</a>
+            <a href="#"><span class="icon">⚡</span>Features</a>
+            <a href="#"><span class="icon">🛒</span>Shop</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>WIRELESS FREEDOM</h1>
+        <p>Feel the sound, not the wires</p>
+        
+        <!-- Animated Banner -->
+        <div class="animated-banner">
+            <div class="banner-text">Limited Edition</div>
+        </div>
+        
+        <button class="cta-button">Explore Now</button>
+    </section>
+
+    <!-- Product 3D Section -->
+    <section class="product-section">
+        <canvas id="product-canvas"></canvas>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <h2>Why ECHO?</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔋</div>
+                <h3>48H Battery</h3>
+                <p>Non-stop music for days</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎵</div>
+                <h3>Hi-Fi Sound</h3>
+                <p>Crystal clear audio quality</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💧</div>
+                <h3>Water Resistant</h3>
+                <p>IPX7 rated protection</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Fast Charge</h3>
+                <p>10 min = 5 hours playback</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // 3D Spiral Background
+        const bgScene = new THREE.Scene();
+        const bgCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const bgRenderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bg-canvas'), alpha: true });
+        bgRenderer.setSize(window.innerWidth, window.innerHeight);
+        bgCamera.position.z = 5;
+
+        const spiralGeometry = new THREE.TorusGeometry(10, 0.5, 16, 100);
+        const spiralMaterial = new THREE.MeshBasicMaterial({ 
+            color: 0xff6b35, 
+            wireframe: true 
+        });
+        const spiral = new THREE.Mesh(spiralGeometry, spiralMaterial);
+        bgScene.add(spiral);
+
+        // Additional spirals
+        for (let i = 0; i < 5; i++) {
+            const s = new THREE.Mesh(spiralGeometry, new THREE.MeshBasicMaterial({ 
+                color: i % 2 === 0 ? 0x6dd5ed : 0xff6b35, 
+                wireframe: true 
+            }));
+            s.position.z = -i * 3;
+            s.scale.set(0.8 - i * 0.1, 0.8 - i * 0.1, 1);
+            bgScene.add(s);
+        }
+
+        let scrollY = 0;
+        window.addEventListener('scroll', () => {
+            scrollY = window.scrollY;
+        });
+
+        function animateBg() {
+            requestAnimationFrame(animateBg);
+            spiral.rotation.x = scrollY * 0.001;
+            spiral.rotation.y += 0.005;
+            bgScene.children.forEach((child, i) => {
+                if (child !== spiral) {
+                    child.rotation.x = scrollY * 0.001 + i * 0.1;
+                    child.rotation.y += 0.003;
+                }
+            });
+            bgRenderer.render(bgScene, bgCamera);
+        }
+        animateBg();
+
+        // 3D Product (Earbuds)
+        const prodScene = new THREE.Scene();
+        const prodCamera = new THREE.PerspectiveCamera(75, window.innerWidth / 600, 0.1, 1000);
+        const prodRenderer = new THREE.WebGLRenderer({ 
+            canvas: document.getElementById('product-canvas'), 
+            alpha: true,
+            antialias: true 
+        });
+        prodRenderer.setSize(window.innerWidth, 600);
+        prodCamera.position.z = 5;
+
+        // Lighting
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        prodScene.add(ambientLight);
+        const pointLight = new THREE.PointLight(0xff6b35, 1);
+        pointLight.position.set(5, 5, 5);
+        prodScene.add(pointLight);
+
+        // Create earbud shape
+        const earbudGroup = new THREE.Group();
+        
+        // Main body
+        const bodyGeometry = new THREE.SphereGeometry(0.8, 32, 32);
+        const bodyMaterial = new THREE.MeshPhongMaterial({ 
+            color: 0x1a1f4e,
+            shininess: 100
+        });
+        const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+        earbudGroup.add(body);
+
+        // Accent ring
+        const ringGeometry = new THREE.TorusGeometry(0.85, 0.1, 16, 100);
+        const ringMaterial = new THREE.MeshPhongMaterial({ color: 0xff6b35 });
+        const ring = new THREE.Mesh(ringGeometry, ringMaterial);
+        earbudGroup.add(ring);
+
+        // Tip
+        const tipGeometry = new THREE.CylinderGeometry(0.3, 0.4, 0.6, 32);
+        const tipMaterial = new THREE.MeshPhongMaterial({ color: 0x6dd5ed });
+        const tip = new THREE.Mesh(tipGeometry, tipMaterial);
+        tip.position.y = -1;
+        earbudGroup.add(tip);
+
+        prodScene.add(earbudGroup);
+
+        function animateProduct() {
+            requestAnimationFrame(animateProduct);
+            earbudGroup.rotation.y += 0.01;
+            earbudGroup.rotation.x = Math.sin(Date.now() * 0.001) * 0.2;
+            ring.rotation.x += 0.02;
+            prodRenderer.render(prodScene, prodCamera);
+        }
+        animateProduct();
+
+        // Responsive
+        window.addEventListener('resize', () => {
+            bgCamera.aspect = window.innerWidth / window.innerHeight;
+            bgCamera.updateProjectionMatrix();
+            bgRenderer.setSize(window.innerWidth, window.innerHeight);
+            
+            prodRenderer.setSize(window.innerWidth, 600);
+            prodCamera.aspect = window.innerWidth / 600;
+            prodCamera.updateProjectionMatrix();
+        });
+
+        // Remove mask reveal after animation
+        setTimeout(() => {
+            document.querySelector('.mask-reveal').style.display = 'none';
+        }, 2000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omar Ali - Baju Melayu & Baju Kurung Raya 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .top-banner {
+            background: #19281f;
+            color: #bf9b30;
+            text-align: center;
+            padding: 12px;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #19281f;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a:hover {
+            color: #bf9b30;
+        }
+
+        /* Hero Slider */
+        .hero-slider {
+            position: relative;
+            height: 90vh;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 2;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .slide h5 {
+            font-size: 16px;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .slide h1 {
+            font-size: 64px;
+            margin-bottom: 30px;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 50px;
+            border: 2px solid white;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .cta-button:hover {
+            background: #bf9b30;
+            border-color: #bf9b30;
+        }
+
+        /* Collections Section */
+        .collections {
+            padding: 80px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .collection-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 3/4;
+        }
+
+        .collection-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .collection-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .collection-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .collection-overlay h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .collection-overlay p {
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #19281f;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 16px;
+            color: #666;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+        }
+
+        /* Store Locator */
+        .store-section {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%2319281f" width="1200" height="600"/></svg>');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 40px;
+            text-align: center;
+            color: white;
+        }
+
+        .store-section h2 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .store-section h5 {
+            font-size: 18px;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        /* Footer */
+        footer {
+            background: #19281f;
+            color: white;
+            padding: 60px 40px 30px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 20px;
+            color: #bf9b30;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #bf9b30;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #999;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+
+            .slide h1 {
+                font-size: 36px;
+            }
+
+            .slide h5 {
+                font-size: 12px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            nav {
+                padding: 15px 20px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 1s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Banner -->
+    <div class="top-banner">
+        NEWLY LAUNCHED - SYAWAL 2025 COLLECTIONS
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">OMAR ALI</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#sedondon">Sedondon</a></li>
+                <li><a href="#men">Men</a></li>
+                <li><a href="#women">Women</a></li>
+                <li><a href="#kids">Kids</a></li>
+                <li><a href="#store">Store Locator</a></li>
+            </ul>
+            <div class="mobile-menu">☰</div>
+        </nav>
+    </header>
+
+    <!-- Hero Slider -->
+    <section class="hero-slider">
+        <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1200 800\"><rect fill=\"%23bf9b30\" width=\"1200\" height=\"800\"/><text x=\"50%\" y=\"50%\" font-size=\"120\" fill=\"%23fff\" text-anchor=\"middle\" dy=\".3em\" font-family=\"serif\">BAYU</text></svg>')">
+            <div class="slide-content fade-in">
+                <h5>COMFORT IN HARMONY, STYLE IN UNITY</h5>
+                <h1>BAYU COTTON</h1>
+                <a href="#" class="cta-button">SHOP NOW</a>
+            </div>
+        </div>
+        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1200 800\"><rect fill=\"%2319281f\" width=\"1200\" height=\"800\"/><text x=\"50%\" y=\"50%\" font-size=\"100\" fill=\"%23bf9b30\" text-anchor=\"middle\" dy=\".3em\" font-family=\"serif\">SEJARAH</text></svg>')">
+            <div class="slide-content">
+                <h5>WARISAN TRADISI YANG TERUS HIDUP</h5>
+                <h1>SEJARAH</h1>
+                <a href="#" class="cta-button">SHOP NOW</a>
+            </div>
+        </div>
+        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1200 800\"><rect fill=\"%23333\" width=\"1200\" height=\"800\"/><text x=\"50%\" y=\"50%\" font-size=\"80\" fill=\"%23fff\" text-anchor=\"middle\" dy=\".3em\" font-family=\"serif\">SINAR SATIN</text></svg>')">
+            <div class="slide-content">
+                <h5>REFINED SHINE, STANDING OUT IN EVERY SETTING</h5>
+                <h1>SINAR SATIN</h1>
+                <a href="#" class="cta-button">SHOP NOW</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collections -->
+    <section class="collections" id="sedondon">
+        <h2 class="section-title">KOLEKSI PILIHAN</h2>
+        <p class="section-subtitle">CELEBRATE TOGETHERNESS WITH UNIFIED STYLE</p>
+        
+        <div class="collection-grid">
+            <div class="collection-item">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'><rect fill='%23bf9b30' width='400' height='500'/><text x='50%' y='50%' font-size='40' fill='%23fff' text-anchor='middle' dy='.3em' font-family='serif'>SEDONDON</text></svg>" alt="Sedondon Collection">
+                <div class="collection-overlay">
+                    <h3>SEDONDON COLLECTION</h3>
+                    <p>For the whole family</p>
+                </div>
+            </div>
+            <div class="collection-item">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'><rect fill='%2319281f' width='400' height='500'/><text x='50%' y='50%' font-size='40' fill='%23bf9b30' text-anchor='middle' dy='.3em' font-family='serif'>MEN</text></svg>" alt="Men Collection">
+                <div class="collection-overlay">
+                    <h3>MEN COLLECTION</h3>
+                    <p>Embrace heritage in every occasion</p>
+                </div>
+            </div>
+            <div class="collection-item">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'><rect fill='%23666' width='400' height='500'/><text x='50%' y='50%' font-size='40' fill='%23fff' text-anchor='middle' dy='.3em' font-family='serif'>WOMEN</text></svg>" alt="Women Collection">
+                <div class="collection-overlay">
+                    <h3>WOMEN COLLECTION</h3>
+                    <p>Elegant tradition meets modern grace</p>
+                </div>
+            </div>
+            <div class="collection-item">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'><rect fill='%23bf9b30' width='400' height='500'/><text x='50%' y='50%' font-size='40' fill='%23fff' text-anchor='middle' dy='.3em' font-family='serif'>KIDS</text></svg>" alt="Kids Collection">
+                <div class="collection-overlay">
+                    <h3>KIDS COLLECTION</h3>
+                    <p>Stylish & charming</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Store Locator -->
+    <section class="store-section" id="store">
+        <h2>READY TO SERVE YOU</h2>
+        <h5>FIND US IN 9 LOCATIONS NATIONWIDE</h5>
+        <a href="#" class="cta-button">VISIT OUR NEAREST STORE</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>SHOP</h4>
+                <ul>
+                    <li><a href="#">Sedondon Collection</a></li>
+                    <li><a href="#">Men</a></li>
+                    <li><a href="#">Women</a></li>
+                    <li><a href="#">Kids</a></li>
+                    <li><a href="#">Accessories</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>ABOUT</h4>
+                <ul>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Insights</a></li>
+                    <li><a href="#">Store Locator</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>SERVICES</h4>
+                <ul>
+                    <li><a href="#">Custom Tailoring</a></li>
+                    <li><a href="#">In-Store Appointment</a></li>
+                    <li><a href="#">Door-to-Door Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>FOLLOW US</h4>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">TikTok</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Omar Ali. Since 1935. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Hero Slider
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        // Auto slide every 5 seconds
+        setInterval(nextSlide, 5000);
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', () => {
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '70px';
+                navLinks.style.left = '0';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'white';
+                navLinks.style.padding = '20px';
+                navLinks.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            }
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Fade in on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.collection-item').forEach(item => {
+            observer.observe(item);
+        });
+    </script>
+</body>
+</html>
